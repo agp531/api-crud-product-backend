@@ -52,9 +52,6 @@ RUN apt-get update && apt-get install -y \
 # Open source, procura as dependencias do npm sem ter o NPM atraves dessa biblioteca
 COPY package.json package-lock.json /var/www/Amity-Social-Cloud-UIKit-Web-OpenSource/
 
-# Instala as dependências npm
-RUN npm install
-
 # Phpmyadmin Instalado na (Porta 80 )
 USER root
 RUN apt-get update \
