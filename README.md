@@ -1,65 +1,44 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Projeto realizado com: PHP 8.2 + Laravel 10
 
-## About Laravel
+Projeto CRUD de Produtos via API
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Para testar: Tenha certeza de ter o docker instalado. o meu está na versão = Docker version 24.0.5
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```@1``` Para começar, clone o repositorio: ```git@github.com:agp531/api-crud-product-backend.git```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```@2``` entre na pasta do projeto e execute o comando: ```docker composer up -d ``` (Isso fará com que monte todas os containers necessarios para sua aplicação! talvez demore um tempinho)
 
-## Learning Laravel
+```@3``` Após finalizar o dockerfile, ainda na sua pasta raiz do projeto, execute o script com o comando: ```sudo chmod +x script.sh && ./script.sh``` (Esse comando ira copiar sua .env.example para .env, colocara as keys do mysql correta e executara os comandos basicos para rodar a aplicação)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```@4``` Talvez sejá necessario clicar em Yes para criar seu banco automaticamente. em seguida ira migrar as tabelas e seedia-las.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```@5``` Após isso o projeto está pronto para ser consumido via API.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```@6``` Vá para o repositorio do FRONTEND e siga as instruções de instalação: https://github.com/agp531/api-crud-product-frontend
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```#ROTAS DECLARADAS COM API RESOURCE.```
 
-### Premium Partners
+* GET 127.0.0.1/api/products -> (Index) Will list data on all the products in the database;
+* GET 127.0.0.1/api/products/{id} -> (Show) Will list the data for a specific product;
+* POST 127.0.0.1/api/products/ -> (Store) Create a product in the database with the values from the body;
+* PUT 127.0.0.1/api/products/{id} -> (Update) Updates the data of a specific product;
+* DELETE 127.0.0.1/api/products/{id} -> (Destroy) Deletes the product with the specific id from the database;
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+* POST 127.0.0.1/api/uploadFile/{id} -> (Store) After create a product, get id of product and store the image of that product.
+Campos para testar via POSTMAN
+```
+{
+    "name": "Allan",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into ",
+    "stock": 25,
+    "price": 27.99,
+    "photo": ""
+}
+```
 
 ## License
 
