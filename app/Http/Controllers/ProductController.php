@@ -67,6 +67,25 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
+    public function getImage($product)
+    {
+        $product = Product::findOrFail($product);
+
+        if (!$product->photo) {
+            return response()->json(['message' => 'Produto não possui imagem.'], 404);
+        }
+
+        $imagePath = storage_path('app/public/' . $product->photo); 
+
+        if (!file_exists($imagePath)) {
+            return response()->json(['message' => 'Imagem do produto não encontrada.'], 404);
+        }
+
+        $imageContent = file_get_contents($imagePath);
+
+        return response($imageContent)->header('Content-Type', "image/jpeg", "image/png", "image/jpg");
+    }
+
     /**
      * Remove the specified resource from storage.
      */
