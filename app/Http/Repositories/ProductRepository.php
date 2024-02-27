@@ -2,6 +2,7 @@
 
 namespace App\Http\Repositories;
 use App\Models\Product;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class ProductRepository
@@ -12,11 +13,8 @@ class ProductRepository
         return Product::all();
     }
 
-    public function createProduct($data)
+    public function createProduct(array $data)
     {
-        if ($data->photo) {
-            $data['photo'] = $data->file('photo')->store('images/products', 'public');
-        }
         return Product::create($data);
     }
 

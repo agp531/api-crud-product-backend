@@ -6,6 +6,8 @@ use App\Http\Repositories\ProductRepository;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Services\ProductService;
+use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -33,7 +35,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-       $product = $this->service->createProduct($request->all());
+       $product = $this->service->createProduct($request->validated());
        return response()->json($product);
     }
 
@@ -51,7 +53,17 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, $productId)
     {
-        $product = $this->service->update($productId, $request->all());
+        $product = $this->service->update($productId, $request->validated());
+        return response()->json($product);
+    }
+
+    public function uploadFile(Request $request, Product $product)
+    {
+        if ($request->photo) {
+            $product->photo = $request->photo->store('images/products', 'public');
+            $product->save();
+        }
+
         return response()->json($product);
     }
 
