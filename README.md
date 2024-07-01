@@ -8,7 +8,7 @@ Para testar: Tenha certeza de ter o docker instalado. o meu está na versão = D
 
 ```@1``` Para começar, clone o repositorio: ```git@github.com:agp531/api-crud-product-backend.git```
 
-```@2``` entre na pasta do projeto e execute o comando: ```docker composer up -d ``` (Isso fará com que monte todas os containers necessarios para sua aplicação! talvez demore um tempinho)
+```@2``` entre na pasta do projeto e execute o comando: ```docker-compose up -d ``` (Isso fará com que monte todas os containers necessarios para sua aplicação! talvez demore um tempinho)
 
 ```@3``` Após finalizar o dockerfile, ainda na sua pasta raiz do projeto, execute o script com o comando: ```sudo chmod +x script.sh && ./script.sh``` (Esse comando ira copiar sua .env.example para .env, colocara as keys do mysql correta e executara os comandos basicos para rodar a aplicação)
 
